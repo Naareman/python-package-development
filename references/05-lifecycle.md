@@ -106,12 +106,12 @@ def read_data(path):
 When an argument is renamed or removed:
 
 ```python
-def read_csv(path, encoding="utf-8", *, sep=None, delimiter=None):
+def read_csv(path, *, charset=None, encoding="utf-8"):
     """..."""
-    if sep is not None:
-        deprecated("sep", "delimiter", version="0.5.0")
-        delimiter = sep
-    # use delimiter going forward
+    if charset is not None:
+        deprecated("charset", "encoding", version="0.5.0")
+        encoding = charset
+    # use encoding going forward
 ```
 
 ---

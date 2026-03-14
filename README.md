@@ -45,6 +45,7 @@ pyckage activates automatically when you're working on Python package tasks. You
 /pyckage docs                       # Set up mkdocs + docstrings
 /pyckage lifecycle                  # Manage deprecations and versioning
 /pyckage release                    # Walk through the PyPI release ritual
+/pyckage check                      # Audit your project for common mistakes
 /pyckage                            # Assess your project against all 5 principles
 ```
 

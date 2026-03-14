@@ -83,9 +83,7 @@ plugins:
 
 nav:
   - Home: index.md
-  - Getting Started: getting-started.md
   - API Reference: api.md
-  - Changelog: changelog.md
 ```
 
 ### `docs/api.md` — auto-generated from docstrings

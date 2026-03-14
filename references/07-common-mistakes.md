@@ -41,7 +41,8 @@ locally but the installed package may be broken (missing files, wrong imports).
 ### Including tests/ in the wheel
 **Mistake:** Build includes a top-level `tests/` in the wheel.
 **Why:** Writes to `site-packages/tests/`, colliding with other packages.
-**Fix:** With hatchling, use `[tool.hatch.build.targets.wheel] exclude = ["tests"]`.
+**Fix:** With src layout + `packages = ["src/my_package"]`, tests are excluded automatically.
+For flat layouts, explicitly exclude: `[tool.hatch.build.targets.wheel] exclude = ["tests"]`.
 
 ### Putting `__init__.py` in tests/
 **Why:** Confuses package discovery. Tests should never be importable.
@@ -143,9 +144,9 @@ __version__ = version("my-package")
 **Fix:**
 ```python
 try:
-    from importlib.metadata import version
+    from importlib.metadata import version, PackageNotFoundError
     __version__ = version("my-package")
-except Exception:
+except PackageNotFoundError:
     __version__ = "0.0.0"
 ```
 

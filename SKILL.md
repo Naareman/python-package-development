@@ -6,7 +6,7 @@ description: >
   mkdocs-material. Activate when creating/structuring Python packages, designing APIs,
   naming functions, adding user messages/errors, writing tests, setting up docs, managing
   deprecations, or publishing to PyPI.
-argument-hint: "[scaffold|api|test|docs|lifecycle|release] [package-name]"
+argument-hint: "[scaffold|api|test|docs|lifecycle|release|check] [package-name]"
 ---
 
 # pyckage
@@ -108,9 +108,18 @@ When invoked with `/pyckage <subcommand>`, route based on the first argument:
 | `/pyckage docs` | Read [references/04-docs.md](references/04-docs.md) and set up or improve documentation |
 | `/pyckage lifecycle` | Read [references/05-lifecycle.md](references/05-lifecycle.md) and manage deprecations |
 | `/pyckage release` | Read [references/06-release.md](references/06-release.md) and walk through the release ritual |
-| `/pyckage` (no args) | Assess the current project against all five principles and suggest improvements |
+| `/pyckage check` | Read [references/07-common-mistakes.md](references/07-common-mistakes.md) and audit current project for anti-patterns |
+| `/pyckage` (no args) | Assess the current project against all five principles (see checklist below) |
 
-When invoked without a subcommand (auto-triggered or plain `/pyckage`), use the Quick Decision Guide below.
+When invoked without a subcommand (auto-triggered or plain `/pyckage`), run this assessment:
+
+1. **Structure** — Is there a `src/` layout? Does `__init__.py` have `__all__`?
+2. **Communication** — Is there an `errors.py` with a base exception? A `_messages.py` with `rich`?
+3. **Naming** — Do public functions follow `verb_noun()`? Are families consistent?
+4. **Documentation** — Do all public functions have Google-style docstrings?
+5. **Lifecycle** — Is `__version__` from `importlib.metadata`? Is there a CHANGELOG?
+
+Then use the Quick Decision Guide below for any specific improvements.
 
 ---
 

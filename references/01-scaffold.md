@@ -18,7 +18,7 @@ cd my-package
 
 # 3. Add core dependencies
 uv add rich          # user messages
-uv add --dev pytest pytest-cov ruff mypy mkdocs-material mkdocstrings[python]
+uv add --group dev pytest pytest-cov ruff mypy mkdocs-material mkdocstrings[python]
 
 # 4. Initialize git
 git init
@@ -40,9 +40,16 @@ name = "my-package"
 version = "0.1.0"
 description = "One clear sentence describing what this does."
 readme = "README.md"
-license = { text = "MIT" }
+license = "MIT"
+license-files = ["LICENSE"]
 authors = [{ name = "Your Name", email = "you@example.com" }]
 requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
 dependencies = [
     "rich>=13.0",
 ]
@@ -51,6 +58,16 @@ dependencies = [
 Homepage = "https://github.com/you/my-package"
 Documentation = "https://you.github.io/my-package"
 Repository = "https://github.com/you/my-package"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov>=5.0",
+    "ruff>=0.4",
+    "mypy>=1.0",
+    "mkdocs-material>=9.0",
+    "mkdocstrings[python]>=0.25",
+]
 
 [build-system]
 requires = ["hatchling"]
@@ -61,7 +78,6 @@ packages = ["src/my_package"]
 
 [tool.ruff]
 line-length = 88
-target-version = "py310"
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP"]
