@@ -36,6 +36,9 @@ relevant reference file from `references/`:
 | Adding a CLI to your package | [references/09-cli-entry-points.md](references/09-cli-entry-points.md) |
 | Managing a monorepo / namespace packages | [references/10-monorepo.md](references/10-monorepo.md) |
 | Automating releases (bump, changelog, CI) | [references/11-automated-release.md](references/11-automated-release.md) |
+| Mocking in tests (APIs, filesystem, time) | [references/12-testing-mocking.md](references/12-testing-mocking.md) |
+| Snapshot testing | [references/13-testing-snapshots.md](references/13-testing-snapshots.md) |
+| FAQ (why these opinions?) | [references/14-faq.md](references/14-faq.md) |
 
 Read only what's relevant to the current task. Don't load everything at once.
 
@@ -113,20 +116,25 @@ When invoked with `/python-package-development <subcommand>`, route based on the
 | `/python-package-development docs` | Read [references/04-docs.md](references/04-docs.md) and set up or improve documentation |
 | `/python-package-development lifecycle` | Read [references/05-lifecycle.md](references/05-lifecycle.md) and manage deprecations |
 | `/python-package-development release` | Read [references/06-release.md](references/06-release.md) and walk through the release ritual |
-| `/python-package-development check` | Read [references/07-common-mistakes.md](references/07-common-mistakes.md) and audit current project for anti-patterns |
+| `/python-package-development check` | Run `python ${CLAUDE_SKILL_DIR}/../../scripts/check-structure.py .` then read [references/07-common-mistakes.md](references/07-common-mistakes.md) to fix any failures |
 | `/python-package-development pre-commit` | Read [references/08-pre-commit.md](references/08-pre-commit.md) and set up pre-commit hooks |
 | `/python-package-development cli` | Read [references/09-cli-entry-points.md](references/09-cli-entry-points.md) and add a CLI to the package |
 | `/python-package-development` (no args) | Assess the current project against all five principles (see checklist below) |
 
-When invoked without a subcommand (auto-triggered or plain `/python-package-development`), run this assessment:
+When invoked without a subcommand (auto-triggered or plain `/python-package-development`):
 
-1. **Structure** — Is there a `src/` layout? Does `__init__.py` have `__all__`?
-2. **Communication** — Is there an `errors.py` with a base exception? A `_messages.py` with `rich`?
-3. **Naming** — Do public functions follow `verb_noun()`? Are families consistent?
-4. **Documentation** — Do all public functions have Google-style docstrings?
-5. **Lifecycle** — Is `__version__` from `importlib.metadata`? Is there a CHANGELOG?
+**Step 1 — Automated audit.** Run the convention checker if available:
+```
+python ${CLAUDE_SKILL_DIR}/../../scripts/check-structure.py .
+```
 
-Then use the Quick Decision Guide below for any specific improvements.
+**Step 2 — Manual review** of things the script can't check:
+1. **Naming** — Do public functions follow `verb_noun()`? Are families consistent?
+2. **Documentation** — Do all public functions have Google-style docstrings with Args/Returns/Raises?
+3. **Messages** — Is `_messages.py` actually used? Any bare `print()` calls?
+4. **Lifecycle** — Is `__version__` from `importlib.metadata`? Any undocumented breaking changes?
+
+**Step 3 — Suggest improvements** using the Quick Decision Guide below.
 
 ---
 
