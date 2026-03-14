@@ -92,20 +92,32 @@ Before diving into details, you should be able to see the whole thing working en
 pyckage/
 ├── SKILL.md                          # Main skill definition (philosophy + routing)
 ├── README.md                         # This file
-├── LICENSE                           # MIT
-└── references/
-    ├── 01-scaffold.md                # Package scaffolding (the "whole game")
-    ├── 02-api-design.md              # Naming, messages, errors
-    ├── 03-testing.md                 # pytest conventions and patterns
-    ├── 04-docs.md                    # Docstrings + mkdocs-material
-    ├── 05-lifecycle.md               # Deprecation ceremony + versioning
-    └── 06-release.md                 # PyPI publishing + GitHub Actions
+├── references/
+│   ├── 01-scaffold.md                # Package scaffolding (the "whole game")
+│   ├── 02-api-design.md              # Naming, messages, errors
+│   ├── 03-testing.md                 # pytest conventions and patterns
+│   ├── 04-docs.md                    # Docstrings + mkdocs-material
+│   ├── 05-lifecycle.md               # Deprecation ceremony + versioning
+│   ├── 06-release.md                 # PyPI publishing + GitHub Actions
+│   └── 07-common-mistakes.md         # Python packaging anti-patterns
+└── scripts/
+    └── count-tokens.py               # Token budget checker
+```
+
+## Token Budget
+
+pyckage follows [posit-dev/skills](https://github.com/posit-dev/skills) conventions for skill size:
+
+- SKILL.md description: under 100 tokens
+- SKILL.md body: under 5,000 tokens / 500 lines
+- Reference files: loaded on demand (no hard limit)
+
+Check with:
+```bash
+python3 scripts/count-tokens.py .
+# Install tiktoken for exact counts: pip install tiktoken
 ```
 
 ## Contributing
 
 This project is opinionated by design. If you think a convention is wrong, open an issue — but bring a reason, not just a preference. The goal is a *philosophy*, not a menu of options.
-
-## License
-
-MIT

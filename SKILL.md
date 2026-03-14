@@ -139,6 +139,33 @@ When invoked without a subcommand (auto-triggered or plain `/pyckage`), use the 
 
 ---
 
+## Common Mistakes — Catch These Early
+
+When reviewing or generating Python package code, watch for these. If you see any, fix them
+immediately and explain why.
+
+| Mistake | Why it's bad | Fix |
+|---|---|---|
+| Flat layout (no `src/`) | Imports source dir instead of installed package — tests pass locally, fail for users | Always use `src/` layout |
+| `from .module import *` in `__init__.py` | Slow imports, polluted namespace, no control over public API | Explicit imports + `__all__` |
+| `--cov=src` in pytest | Measures directory path, not importable module — confusing reports | `--cov=my_package` (the importable name) |
+| `dependencies = ["requests"]` (no version) | Breaking release silently breaks your package | Lower bound: `"requests>=2.28"` |
+| `dependencies = ["requests>=2.28,<3"]` | Blocks users from upgrading — #1 cause of dependency conflicts | Lower bound only for libraries |
+| `requires-python = ">=3.10,<3.13"` | Blocks install on new Python versions that almost certainly work | Lower bound only: `">=3.10"` |
+| `__version__ = "0.1.0"` hardcoded in two places | Version drift between pyproject.toml and code | Use `importlib.metadata.version()` |
+| Missing `py.typed` marker | Type checkers ignore all your annotations for downstream users | `touch src/my_package/py.typed` |
+| `print()` for user messages | Not styled, not catchable, not centralized | Use `_messages.py` with `rich` |
+| `raise Exception("bad")` | Too broad — users can't catch specific errors | Custom exception hierarchy in `errors.py` |
+| Dev deps in `[project] dependencies` | Users get pytest, ruff installed as transitive deps | Use `[dependency-groups]` (PEP 735) |
+| `tests/__init__.py` exists | Confuses package discovery, may ship tests in wheel | Remove it — use `conftest.py` instead |
+| `MANIFEST.in` for wheel contents | MANIFEST.in only affects sdist, not wheels | Use build backend config for wheel contents |
+| Pinned deps in library (`"requests==2.31.0"`) | Impossible to install alongside anything else needing requests | Pins are for apps (lock files), not libraries |
+| `mkdocs.yml` inside `docs/` | `mkdocs serve` looks in project root by default | Keep `mkdocs.yml` at project root |
+
+For the full list with detailed explanations, see [references/07-common-mistakes.md](references/07-common-mistakes.md).
+
+---
+
 ## Tone When Helping
 
 - Be opinionated. This skill exists to have opinions. Don't offer five options when one is right.
