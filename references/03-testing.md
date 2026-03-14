@@ -24,31 +24,32 @@ One test file per source module. Name them `test_<module>.py`.
 
 ```python
 # tests/conftest.py
-# Replace with your actual data structures — this uses pandas as an example.
 import pytest
-import pandas as pd
 
 
 @pytest.fixture
-def sample_df():
-    """A minimal valid DataFrame for testing."""
-    return pd.DataFrame({
-        "id": [1, 2, 3],
-        "value": [10.0, 20.0, 30.0],
-    })
+def sample_records():
+    """A minimal list of dicts for testing."""
+    return [
+        {"id": 1, "value": 10.0},
+        {"id": 2, "value": 20.0},
+        {"id": 3, "value": 30.0},
+    ]
 
 
 @pytest.fixture
-def empty_df():
-    """An empty DataFrame — useful for edge case testing."""
-    return pd.DataFrame(columns=["id", "value"])
+def empty_records():
+    """An empty list — useful for edge case testing."""
+    return []
 
 
 @pytest.fixture
-def tmp_csv(tmp_path, sample_df):
+def tmp_csv(tmp_path, sample_records):
     """A temporary CSV file on disk."""
     path = tmp_path / "sample.csv"
-    sample_df.to_csv(path, index=False)
+    header = ",".join(sample_records[0].keys())
+    rows = [",".join(str(v) for v in row.values()) for row in sample_records]
+    path.write_text(header + "\n" + "\n".join(rows) + "\n")
     return path
 ```
 

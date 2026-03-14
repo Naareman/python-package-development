@@ -6,7 +6,7 @@ description: >
   mkdocs-material. Activate when creating/structuring Python packages, designing APIs,
   naming functions, adding user messages/errors, writing tests, setting up docs, managing
   deprecations, or publishing to PyPI.
-argument-hint: "[scaffold|api|test|docs|lifecycle|release|check] [package-name]"
+argument-hint: "[scaffold|api|test|docs|lifecycle|release|check|pre-commit|cli] [package-name]"
 ---
 
 # pyckage
@@ -32,6 +32,10 @@ relevant reference file from `references/`:
 | Adding deprecations or managing versions | [references/05-lifecycle.md](references/05-lifecycle.md) |
 | Releasing to PyPI or setting up CI/CD | [references/06-release.md](references/06-release.md) |
 | Auditing for common anti-patterns | [references/07-common-mistakes.md](references/07-common-mistakes.md) |
+| Setting up pre-commit hooks | [references/08-pre-commit.md](references/08-pre-commit.md) |
+| Adding a CLI to your package | [references/09-cli-entry-points.md](references/09-cli-entry-points.md) |
+| Managing a monorepo / namespace packages | [references/10-monorepo.md](references/10-monorepo.md) |
+| Automating releases (bump, changelog, CI) | [references/11-automated-release.md](references/11-automated-release.md) |
 
 Read only what's relevant to the current task. Don't load everything at once.
 
@@ -110,6 +114,8 @@ When invoked with `/pyckage <subcommand>`, route based on the first argument:
 | `/pyckage lifecycle` | Read [references/05-lifecycle.md](references/05-lifecycle.md) and manage deprecations |
 | `/pyckage release` | Read [references/06-release.md](references/06-release.md) and walk through the release ritual |
 | `/pyckage check` | Read [references/07-common-mistakes.md](references/07-common-mistakes.md) and audit current project for anti-patterns |
+| `/pyckage pre-commit` | Read [references/08-pre-commit.md](references/08-pre-commit.md) and set up pre-commit hooks |
+| `/pyckage cli` | Read [references/09-cli-entry-points.md](references/09-cli-entry-points.md) and add a CLI to the package |
 | `/pyckage` (no args) | Assess the current project against all five principles (see checklist below) |
 
 When invoked without a subcommand (auto-triggered or plain `/pyckage`), run this assessment:

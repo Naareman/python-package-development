@@ -46,6 +46,8 @@ pyckage activates automatically when you're working on Python package tasks. You
 /pyckage lifecycle                  # Manage deprecations and versioning
 /pyckage release                    # Walk through the PyPI release ritual
 /pyckage check                      # Audit your project for common mistakes
+/pyckage pre-commit                 # Set up pre-commit hooks
+/pyckage cli                        # Add a CLI to your package
 /pyckage                            # Assess your project against all 5 principles
 ```
 
@@ -93,6 +95,8 @@ Before diving into details, you should be able to see the whole thing working en
 pyckage/
 ├── SKILL.md                          # Main skill definition (philosophy + routing)
 ├── README.md                         # This file
+├── examples/
+│   └── my-package/                   # Complete reference implementation (22/22 checks)
 ├── references/
 │   ├── 01-scaffold.md                # Package scaffolding (the "whole game")
 │   ├── 02-api-design.md              # Naming, messages, errors
@@ -100,9 +104,17 @@ pyckage/
 │   ├── 04-docs.md                    # Docstrings + mkdocs-material
 │   ├── 05-lifecycle.md               # Deprecation ceremony + versioning
 │   ├── 06-release.md                 # PyPI publishing + GitHub Actions
-│   └── 07-common-mistakes.md         # Python packaging anti-patterns
-└── scripts/
-    └── count-tokens.py               # Token budget checker
+│   ├── 07-common-mistakes.md         # Python packaging anti-patterns
+│   ├── 08-pre-commit.md              # Pre-commit hooks setup
+│   ├── 09-cli-entry-points.md        # Adding a CLI to your package
+│   ├── 10-monorepo.md                # Monorepo + namespace packages
+│   └── 11-automated-release.md       # Automated version bumps + changelog
+├── scripts/
+│   ├── count-tokens.py               # Token budget checker
+│   └── check-structure.py            # Audit project against pyckage conventions
+└── .github/
+    └── workflows/
+        └── check-budget.yml          # CI: token budget check on PRs
 ```
 
 ## Token Budget

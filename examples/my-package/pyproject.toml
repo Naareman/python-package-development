@@ -1,0 +1,56 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "my-package"
+version = "0.1.0"
+description = "A tiny CSV reader utility."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Typing :: Typed",
+]
+
+[project.urls]
+Documentation = "https://example.com/my-package/docs"
+Repository = "https://github.com/you/my-package"
+Changelog = "https://github.com/you/my-package/blob/main/CHANGELOG.md"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov>=6.0",
+    "mypy>=1.13",
+    "ruff>=0.8",
+]
+docs = [
+    "mkdocs-material>=9.5",
+    "mkdocstrings[python]>=0.27",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/my_package"]
+
+[tool.ruff]
+src = ["src"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "UP", "RUF"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--strict-markers --cov=my_package"
+
+[tool.mypy]
+strict = true
+
+[tool.coverage.run]
+source = ["my_package"]
