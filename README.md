@@ -174,7 +174,7 @@ python-package-development/
 ├── skills/
 │   └── python-package-development/
 │       ├── SKILL.md                  # Main skill (philosophy + routing)
-│       └── references/               # 11 reference docs (loaded on demand)
+│       └── references/               # 14 reference docs (loaded on demand)
 ├── examples/
 │   └── my-package/                   # Reference implementation (22/22 checks)
 ├── scripts/
