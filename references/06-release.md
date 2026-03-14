@@ -165,7 +165,7 @@ jobs:
         uses: astral-sh/setup-uv@v4
 
       - name: Install dependencies
-        run: uv sync --dev
+        run: uv sync --group dev
 
       - name: Deploy docs
         run: uv run mkdocs gh-deploy --force

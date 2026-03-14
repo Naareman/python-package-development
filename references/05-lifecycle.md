@@ -49,7 +49,7 @@ def read_data(path):  # OLD name
         "'read_data()' is deprecated, use 'read_csv()' instead.",
         DeprecationWarning,
         stacklevel=2,  # points to the caller, not this function
-        )
+    )
     return read_csv(path)
 ```
 

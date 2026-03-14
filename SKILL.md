@@ -31,6 +31,7 @@ relevant reference file from `references/`:
 | Setting up or writing documentation | [references/04-docs.md](references/04-docs.md) |
 | Adding deprecations or managing versions | [references/05-lifecycle.md](references/05-lifecycle.md) |
 | Releasing to PyPI or setting up CI/CD | [references/06-release.md](references/06-release.md) |
+| Auditing for common anti-patterns | [references/07-common-mistakes.md](references/07-common-mistakes.md) |
 
 Read only what's relevant to the current task. Don't load everything at once.
 

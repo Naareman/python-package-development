@@ -136,7 +136,7 @@ __all__ = [
     "ValidationError",
 ]
 
-__version__ = version("my-package")
+__version__ = version("my-package")  # add PackageNotFoundError fallback if needed (see 07-common-mistakes.md)
 ```
 
 R equivalent: the `NAMESPACE` file — explicit exports only.
