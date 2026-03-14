@@ -33,29 +33,101 @@ cp -r python-package-development/skills/python-package-development \
 
 In Claude Code, type `/python-package-development` — you should see it in the skill list.
 
-## Usage
+## Examples
 
-The skill activates automatically when you're working on Python package tasks. You can also invoke it explicitly:
+### Scaffold a new package from scratch
 
 ```
-/python-package-development scaffold my-new-package
-/python-package-development api
-/python-package-development test
-/python-package-development docs
-/python-package-development lifecycle
-/python-package-development release
-/python-package-development check
-/python-package-development pre-commit
-/python-package-development cli
-/python-package-development
+You:  /python-package-development scaffold my-analytics-lib
 ```
 
-Or just describe what you need — the skill activates when it recognizes a Python packaging task:
+Claude creates the full package structure following all conventions:
 
-- *"I want to make a Python library"*
-- *"Help me structure my code as a package"*
-- *"How should I name these functions?"*
-- *"How do I publish to PyPI?"*
+```
+my-analytics-lib/
+├── pyproject.toml          # uv + hatchling, PEP 735 dependency-groups
+├── mkdocs.yml              # mkdocs-material with mkdocstrings
+├── src/
+│   └── my_analytics_lib/
+│       ├── __init__.py     # curated __all__, importlib.metadata version
+│       ├── py.typed        # PEP 561 type marker
+│       ├── errors.py       # base exception + typed errors
+│       ├── _messages.py    # rich console (info, success, warn, abort)
+│       └── core.py         # verb_noun() functions with Google docstrings
+├── tests/
+│   ├── conftest.py         # shared fixtures
+│   └── test_core.py        # happy path + error cases
+└── docs/
+    ├── index.md
+    └── api.md
+```
+
+### Review your API design
+
+```
+You:  /python-package-development api
+```
+
+Claude reads your code and checks:
+- Are functions named `verb_noun()`? Are families consistent?
+- Are errors in `errors.py` with a proper hierarchy?
+- Is `_messages.py` used instead of bare `print()`?
+- Does every public function have a Google-style docstring?
+
+### Audit for common mistakes
+
+```
+You:  /python-package-development check
+```
+
+Claude scans your project for 30+ known anti-patterns:
+- `requires-python` with an upper bound?
+- Dev dependencies in `[project] dependencies`?
+- `--cov=src` instead of `--cov=my_package`?
+- Missing `py.typed`? `tests/__init__.py` exists?
+- `license = { text = "MIT" }` (deprecated)?
+
+### Set up pre-commit hooks
+
+```
+You:  /python-package-development pre-commit
+```
+
+Claude adds `.pre-commit-config.yaml` with ruff (lint + format), mypy, and standard hooks — no black, isort, or flake8 needed.
+
+### Deprecate a function properly
+
+```
+You:  I need to rename parse_file() to read_csv()
+```
+
+The skill activates automatically and walks you through the deprecation ceremony:
+1. Keep `parse_file()`, add `DeprecationWarning` pointing to `read_csv()`
+2. Set a removal timeline in the docstring and CHANGELOG
+3. Remove in the promised version
+
+### Prepare a PyPI release
+
+```
+You:  /python-package-development release
+```
+
+Claude walks through the release ritual:
+1. All tests pass? Lint clean? Types check?
+2. CHANGELOG updated? Version bumped?
+3. Git tag created? Tag pushed?
+4. CI publishes to PyPI automatically via trusted publishing
+
+### Just ask naturally
+
+The skill also activates when you describe what you need:
+
+```
+You:  I want to make a Python library for parsing config files
+You:  Help me structure my code as a package
+You:  How should I name these functions?
+You:  How do I publish to PyPI?
+```
 
 ## The Philosophy (what R taught us)
 
@@ -87,6 +159,10 @@ Before diving into details, you should see the whole thing working end-to-end.
 | Documentation | `roxygen2` + `pkgdown` | Google docstrings + `mkdocs-material` |
 | Lifecycle | `lifecycle` package | `warnings` + deprecation conventions |
 | Release | `devtools::release()` | GitHub Actions + PyPI |
+| Pre-commit | `lintr` + `styler` | ruff + mypy + pre-commit |
+| CLI | `Rscript` | `click` / `argparse` + entry points |
+| Monorepo | — | uv workspaces + namespace packages |
+| Automated release | — | `bump-my-version` + `git-cliff` |
 
 ## Plugin Structure
 
@@ -98,18 +174,7 @@ python-package-development/
 ├── skills/
 │   └── python-package-development/
 │       ├── SKILL.md                  # Main skill (philosophy + routing)
-│       └── references/
-│           ├── 01-scaffold.md        # Package scaffolding
-│           ├── 02-api-design.md      # Naming, messages, errors
-│           ├── 03-testing.md         # pytest conventions
-│           ├── 04-docs.md            # Docstrings + mkdocs-material
-│           ├── 05-lifecycle.md       # Deprecation ceremony
-│           ├── 06-release.md         # PyPI + GitHub Actions
-│           ├── 07-common-mistakes.md # Anti-patterns
-│           ├── 08-pre-commit.md      # Pre-commit hooks
-│           ├── 09-cli-entry-points.md # CLI entry points
-│           ├── 10-monorepo.md        # Monorepo + namespaces
-│           └── 11-automated-release.md # Automated releases
+│       └── references/               # 11 reference docs (loaded on demand)
 ├── examples/
 │   └── my-package/                   # Reference implementation (22/22 checks)
 ├── scripts/
@@ -117,7 +182,7 @@ python-package-development/
 │   └── check-structure.py            # Convention audit (22 checks)
 └── .github/
     └── workflows/
-        └── check-budget.yml          # CI: token budget on PRs
+        └── check-budget.yml          # CI: budget + example audit on PRs
 ```
 
 ## Token Budget
@@ -134,4 +199,4 @@ python3 scripts/count-tokens.py skills/python-package-development/
 
 ## Contributing
 
-This project is opinionated by design. If you think a convention is wrong, open an issue — but bring a reason, not just a preference. The goal is a *philosophy*, not a menu of options.
+See [CONTRIBUTING.md](CONTRIBUTING.md). This project is opinionated by design — bring a reason, not just a preference.
