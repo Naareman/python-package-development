@@ -105,7 +105,7 @@ def main() -> None:
         files.extend(sorted(scripts_dir.glob("*.py")))
 
     # Header
-    print(f"\n  pyckage token budget: {skill_name}")
+    print(f"\n  skill token budget: {skill_name}")
     print(f"  Method: {method}")
     print(f"  {'=' * 64}")
 

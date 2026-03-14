@@ -1,5 +1,5 @@
 ---
-name: pyckage
+name: python-package-development
 description: >
   Build Python packages the right way — R-inspired philosophy for scaffolding, API design,
   testing, docs, deprecation lifecycle, and PyPI release using uv, rich, pytest, and
@@ -9,7 +9,7 @@ description: >
 argument-hint: "[scaffold|api|test|docs|lifecycle|release|check|pre-commit|cli] [package-name]"
 ---
 
-# pyckage
+# python-package-development
 
 A skill for building Python packages with the philosophy of the R package ecosystem:
 clear user communication, principled API design, living documentation, and ceremonial lifecycle management.
@@ -103,22 +103,22 @@ Key decisions encoded here:
 
 ## Argument Routing
 
-When invoked with `/pyckage <subcommand>`, route based on the first argument:
+When invoked with `/python-package-development <subcommand>`, route based on the first argument:
 
 | Invocation | Action |
 |---|---|
-| `/pyckage scaffold <name>` | Read [references/01-scaffold.md](references/01-scaffold.md) and create a new package named `<name>` |
-| `/pyckage api` | Read [references/02-api-design.md](references/02-api-design.md) and review/improve the current package's API |
-| `/pyckage test` | Read [references/03-testing.md](references/03-testing.md) and set up or improve tests |
-| `/pyckage docs` | Read [references/04-docs.md](references/04-docs.md) and set up or improve documentation |
-| `/pyckage lifecycle` | Read [references/05-lifecycle.md](references/05-lifecycle.md) and manage deprecations |
-| `/pyckage release` | Read [references/06-release.md](references/06-release.md) and walk through the release ritual |
-| `/pyckage check` | Read [references/07-common-mistakes.md](references/07-common-mistakes.md) and audit current project for anti-patterns |
-| `/pyckage pre-commit` | Read [references/08-pre-commit.md](references/08-pre-commit.md) and set up pre-commit hooks |
-| `/pyckage cli` | Read [references/09-cli-entry-points.md](references/09-cli-entry-points.md) and add a CLI to the package |
-| `/pyckage` (no args) | Assess the current project against all five principles (see checklist below) |
+| `/python-package-development scaffold <name>` | Read [references/01-scaffold.md](references/01-scaffold.md) and create a new package named `<name>` |
+| `/python-package-development api` | Read [references/02-api-design.md](references/02-api-design.md) and review/improve the current package's API |
+| `/python-package-development test` | Read [references/03-testing.md](references/03-testing.md) and set up or improve tests |
+| `/python-package-development docs` | Read [references/04-docs.md](references/04-docs.md) and set up or improve documentation |
+| `/python-package-development lifecycle` | Read [references/05-lifecycle.md](references/05-lifecycle.md) and manage deprecations |
+| `/python-package-development release` | Read [references/06-release.md](references/06-release.md) and walk through the release ritual |
+| `/python-package-development check` | Read [references/07-common-mistakes.md](references/07-common-mistakes.md) and audit current project for anti-patterns |
+| `/python-package-development pre-commit` | Read [references/08-pre-commit.md](references/08-pre-commit.md) and set up pre-commit hooks |
+| `/python-package-development cli` | Read [references/09-cli-entry-points.md](references/09-cli-entry-points.md) and add a CLI to the package |
+| `/python-package-development` (no args) | Assess the current project against all five principles (see checklist below) |
 
-When invoked without a subcommand (auto-triggered or plain `/pyckage`), run this assessment:
+When invoked without a subcommand (auto-triggered or plain `/python-package-development`), run this assessment:
 
 1. **Structure** — Is there a `src/` layout? Does `__init__.py` have `__all__`?
 2. **Communication** — Is there an `errors.py` with a base exception? A `_messages.py` with `rich`?
