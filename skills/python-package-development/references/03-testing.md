@@ -149,7 +149,7 @@ addopts = "--cov=my_package --cov-report=term-missing"  # use your importable pa
 
 ## What to Always Test
 
-These are non-negotiable for a pyckage-style package:
+These are non-negotiable for a well-structured package:
 
 1. **Happy path** — the normal case works
 2. **Empty inputs** — empty DataFrame, empty list, empty string

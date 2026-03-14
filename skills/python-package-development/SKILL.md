@@ -70,7 +70,7 @@ detail. Scaffold first, refine later.
 
 ---
 
-## Anatomy of a pyckage-style Package
+## Anatomy of a Well-Structured Package
 
 ```
 my-package/

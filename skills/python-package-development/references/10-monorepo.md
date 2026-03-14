@@ -59,7 +59,7 @@ mylib-core = { workspace = true }
 
 ---
 
-## Namespace Packages (PEP 420)
+## Namespace Packages (PEP 420, implemented in Python 3.3)
 
 Namespace packages let multiple distributions share a top-level import path.
 `mylib-core` provides `mylib.core`, `mylib-io` provides `mylib.io`, etc.

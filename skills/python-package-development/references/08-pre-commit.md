@@ -84,7 +84,7 @@ Add to your GitHub Actions workflow:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: astral-sh/setup-uv@v3
+      - uses: astral-sh/setup-uv@v4
       - run: uv sync --group dev
       - run: uv run pre-commit run --all-files
 ```

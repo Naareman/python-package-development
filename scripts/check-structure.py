@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Audit a Python package project against pyckage conventions."""
+"""Audit a Python package project against python-package-development conventions."""
 
 from __future__ import annotations
 

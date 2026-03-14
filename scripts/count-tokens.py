@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-"""Count tokens and lines in pyckage skill files.
+"""Count tokens and lines in skill files.
 
 Usage:
     python3 scripts/count-tokens.py [skill-dir]

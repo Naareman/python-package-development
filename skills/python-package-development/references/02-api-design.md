@@ -1,6 +1,6 @@
 # 02 — API Design: Naming, Messages, and Errors
 
-This is the heart of the pyckage philosophy. R's tidyverse set a standard for what a
+This is the heart of this skill's philosophy. R's tidyverse set a standard for what a
 well-designed package API feels like. This reference encodes that standard for Python.
 
 ---

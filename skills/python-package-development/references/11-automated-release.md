@@ -37,11 +37,8 @@ message = "chore: release v{new_version}"
 filename = "pyproject.toml"
 search = 'version = "{current_version}"'
 replace = 'version = "{new_version}"'
-
-[[tool.bumpversion.files]]
-filename = "src/my_package/__init__.py"
-search = '__version__ = "{current_version}"'
-replace = '__version__ = "{new_version}"'
+# Only bump pyproject.toml — __version__ reads from metadata via importlib.metadata.version()
+# No need to bump __init__.py when using the recommended single-source pattern
 ```
 
 Usage:

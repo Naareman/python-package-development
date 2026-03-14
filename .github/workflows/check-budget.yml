@@ -1,4 +1,4 @@
-name: Check Token Budget
+name: Check Token Budget & Example
 on: pull_request
 jobs:
   budget:
@@ -8,4 +8,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: python scripts/count-tokens.py .
+      - name: Check token budget
+        run: python scripts/count-tokens.py skills/python-package-development/
+      - name: Audit example package
+        run: python scripts/check-structure.py examples/my-package/
