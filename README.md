@@ -6,11 +6,11 @@
 
 **python-package-development** is a [Claude Code](https://docs.anthropic.com/en/docs/claude-code) plugin that teaches Claude how to build Python packages the right way — using the hard-won wisdom of the R package ecosystem.
 
+**For Python developers who want their packages to feel as polished as tidyverse R packages** — whether you're creating your first library or maintaining a production package.
+
 Python has incredible packages. But it has never had a unified philosophy for *building* them. The R world has one: Hadley Wickham's [*R Packages*](https://r-pkgs.org/) book (with Jenny Bryan), backed by tools like `devtools`, `usethis`, `roxygen2`, `cli`, and `lifecycle`.
 
 This plugin translates that philosophy into Python using modern tools: `uv`, `rich`, `pytest`, and `mkdocs-material`.
-
-> Looking for the CLI tool? See [packright](https://github.com/Naareman/packright) — the companion Python package that automates these conventions from the command line.
 
 ## Installation
 
