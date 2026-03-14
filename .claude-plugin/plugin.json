@@ -1,0 +1,21 @@
+{
+  "name": "python-package-development",
+  "description": "Build Python packages the right way — R-inspired philosophy for scaffolding, API design, testing, docs, deprecation lifecycle, and PyPI release.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Nareman",
+    "url": "https://github.com/Naareman"
+  },
+  "repository": "https://github.com/Naareman/python-package-development",
+  "license": "MIT",
+  "keywords": [
+    "python",
+    "packaging",
+    "scaffold",
+    "pypi",
+    "uv",
+    "pytest",
+    "mkdocs",
+    "rich"
+  ]
+}
